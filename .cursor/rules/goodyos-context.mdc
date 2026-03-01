@@ -1,0 +1,13 @@
+---
+description: GoodyOS distro stack, repo layout, and build context for coding sessions
+alwaysApply: true
+---
+
+# GoodyOS Project Context
+
+- **What it is:** Privacy Linux distro on Debian Bookworm + KDE Plasma; built with live-build. Build host: Parrot OS or Debian-based (not Windows/macOS).
+- **Source of truth:** `GoodyOS_Project_Bible.pdf` (in parent folder `../GoodyOS_Project_Bible.pdf`). Keep README.md and docs aligned with it.
+- **Stack:** Bash for scripts and automation; Python + GTK for Ghost app; nftables + UFW; Mullvad VPN; Ghost (3 tiers); Scorched Earth (NIST 800-88 / DoD); USB dead man's switch.
+- **Repo layout:** `config/` and `auto/` (live-build); `*.list.chroot` package lists; `hooks/` (chroot/normal); `includes.chroot/` (hosts, nftables, UFW, skel, wallpapers, themes, `opt/ghost/`); `includes.binary/` (GRUB); `preseed/`; `ghost/` (Ghost source + systemd); `docs/`; `branding/`. Top-level `build.sh` for one-click build.
+- **Build:** `sudo lb build` (full), `sudo lb clean` (clean). Test ISO in VirtualBox; target idle RAM under 800 MB; ISO under 4 GB.
+- **Principles:** Zero telemetry, zero bloat, privacy by default, proven tools only. Document limitations (see README "What GoodyOS Cannot Protect Against").
