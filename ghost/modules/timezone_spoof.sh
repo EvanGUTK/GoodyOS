@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
-# Ghost — timezone spoofed to decoy location (Level 1)
-# Default decoy: UTC or a common neutral TZ
+# GoodyOS Ghost — timezone spoofed to decoy location
+# ln -sf /usr/share/zoneinfo/DecoyZone /etc/localtime
 
 set -e
-DECOY_TZ="${GHOST_TZ:-UTC}"
-ln -sf "/usr/share/zoneinfo/$DECOY_TZ" /etc/localtime 2>/dev/null || true
-echo "[Ghost] Timezone set to $DECOY_TZ"
+# TODO Phase 6: pick decoy TZ, apply
+echo "[Ghost] timezone_spoof: placeholder"

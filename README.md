@@ -196,10 +196,10 @@ GoodyOS guarantees: **your code and data do not leave your machine and are not u
 ## Repo & Build Overview
 
 - **Build:** Debian **live-build** on a **Parrot OS** (or Debian-based) host — not Windows or macOS.
-- **Output:** `goodyos.iso` for live boot and install.
-- **Daily loop:** edit config/lists/hooks → `sudo lb clean && sudo lb build` → test ISO in VirtualBox.
+- **Output:** `live-image-amd64.hybrid.iso` for live boot and install.
+- **Daily loop:** edit config, package lists, or hooks → `sudo ./auto/clean && sudo ./build.sh` → test ISO in VirtualBox.
 
-Key areas: `config/`, `auto/`, package `*.list.chroot`, `hooks/`, `includes.chroot/` (hosts, nftables, UFW, skel, wallpapers, themes), `includes.binary/` (GRUB theme), `preseed/`, and `ghost/` (Ghost app source and systemd unit).
+**Repository layout:** See **PIPELINE.md** for the full directory tree and build flow. Key areas: `auto/` (config, build, clean), `config/package-lists/*.list.chroot`, `config/hooks/live/`, `config/includes.chroot/` (hosts, nftables, skel, wallpapers, themes), `config/includes.binary/` (GRUB), `config/preseed/`, and `ghost/` (Ghost app source and systemd unit).
 
 ---
 

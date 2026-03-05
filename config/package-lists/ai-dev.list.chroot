@@ -1,16 +1,10 @@
-# GoodyOS — AI/ML dev: Ollama, Jupyter, CUDA
-# Local LLM only — no code leaves machine
+# GoodyOS — AI/ML: Ollama, Jupyter, CUDA (optional)
+# Uncomment cuda packages if building for GPU AI work
 
 ollama
-jupyter
 jupyter-notebook
 python3-jupyter-core
-
-# Python ML stack
+python3-ipykernel
 python3-numpy
 python3-pandas
-python3-scipy
-python3-matplotlib
-
-# CUDA (optional; uncomment if building with GPU support)
-# nvidia-cuda-toolkit
+# nvidia-cuda-toolkit  # uncomment for CUDA

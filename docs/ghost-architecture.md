@@ -1,26 +1,17 @@
 # Ghost Architecture
 
-Ghost is GoodyOS's identity and privacy layer: Python + GTK app + systemd service.
+Ghost is GoodyOS’s identity and privacy layer: systemd service + Python/GTK GUI.
 
 ## Components
-- **ghost.sh** — Master script; runs at boot and on "New Identity". Invokes modules by level.
-- **modules/** — mac_spoof, hostname_spoof, timezone_spoof, dns_config, kill_switch; Level 2: hardware_spoof. scorched_earth.sh for emergency wipe.
-- **ghost.py** — GTK GUI: level selector, New Identity, panic (Scorched Earth), tray icon.
-- **usb_watchdog.py** — Polls for registered USB; Level 3 + removal → Scorched Earth.
-- **ghost.service** — systemd oneshot at boot (runs ghost.sh 1).
+- **ghost.sh** — Master script: runs at boot and on “New Identity”; calls modules.
+- **modules/** — mac_spoof, hostname_spoof, timezone_spoof, hardware_spoof (L2+), dns_config, kill_switch, scorched_earth.
+- **usb_watchdog.py** — Dead man’s switch: poll USB; if L3 armed and USB removed → Scorched Earth.
+- **ghost.py** — GUI: level selector, status, New Identity, panic button; tray icon.
+- **ghost.service** — systemd: runs ghost.sh at boot.
 
-## Flow
-- **Boot:** Full identity randomization (MAC, hostname, timezone, Level 2: hardware spoof).
-- **Network connect:** New MAC + hostname (handled by udev/net hook or Ghost service).
-- **User:** Manual re-ghost via GUI or shortcut.
-- **USB removal (Level 3 armed):** Scorched Earth immediately.
+## Levels
+- **1 — Daily Driver:** MAC/hostname/TZ spoof, DoH, Mullvad, kill switch.
+- **2 — Elevated:** + Tor+Mullvad chain, hardware spoof, /proc/sys hardening, no disk write except encrypted.
+- **3 — Scorched Earth Ready:** + USB dead man’s switch armed, RAM-only, full lockdown.
 
-## Build order (from Bible)
-1. Spoof scripts (MAC, hostname, timezone, hardware)
-2. nftables kill switch
-3. Scorched Earth script
-4. USB dead man's switch service
-5. ghost.sh master
-6. GTK GUI + tray
-7. systemd units
-8. Test in VirtualBox
+Build order (from Bible): spoof scripts → nftables → scorched_earth → usb_watchdog → ghost.sh → GUI → tray → test in VM.

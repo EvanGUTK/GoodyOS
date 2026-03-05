@@ -1,66 +1,58 @@
 # GoodyOS Roadmap
 
-Aligned with the Project Bible Master Todo List.
+Aligned with the **GoodyOS Project Bible** Master Todo (Phases 1–12).
 
 ## Phase 1 — Setup ✅
-- [x] Create repo structure (this worktree)
-- [x] Install live-build deps (on Parrot/Debian host)
-- [x] Full folder structure and initial files
+- [x] Create repo structure (this workspace)
+- [ ] Clone on Parrot OS build host, install live-build deps
 - [ ] First commit: initial project structure
 
 ## Phase 2 — Branding & Identity
-- [ ] Design GoodyOS logo (Inkscape)
+- [ ] GoodyOS logo (Inkscape)
 - [ ] Default dark wallpaper
-- [ ] GRUB boot screen theme
-- [ ] Color palette (primary, background, accent)
-- [ ] Commit to /branding
+- [ ] GRUB boot theme
+- [ ] Color palette
 
 ## Phase 3 — Core Configuration
-- [ ] Finalize auto/config for live-build (lb config)
+- [ ] Validate auto/config (Bookworm, amd64, KDE)
 - [ ] First test build: base + desktop only
-- [ ] Boot ISO in VirtualBox, confirm KDE loads
+- [ ] Boot ISO in VirtualBox, confirm KDE
 
 ## Phase 4 — Package Lists
 - [ ] Validate all package lists (security, forensics, dev, ai-dev, productivity)
-- [ ] Rebuild and confirm tools present and launch
+- [ ] Rebuild and confirm tools present
 
 ## Phase 5 — Privacy & Hardening
-- [ ] Custom /etc/hosts telemetry block list
-- [ ] UFW firewall hook — enabled by default
-- [ ] DNS-over-HTTPS (Quad9)
-- [ ] nftables kill switch rules final
-- [ ] sysctl hardening, AppArmor, RAM/swap wipe on shutdown
-- [ ] Rebuild and verify firewall on first boot
+- [ ] Custom /etc/hosts (telemetry blocks)
+- [ ] UFW + nftables kill switch
+- [ ] Strip telemetry packages
+- [ ] DNS-over-HTTPS, sysctl, AppArmor, RAM/swap wipe on shutdown
 
 ## Phase 6 — Ghost App
-- [ ] Test each Ghost module in VM
-- [ ] Full Scorched Earth sequence on virtual disk (NIST vs DoD timing)
-- [ ] GTK GUI polish, system tray
-- [ ] USB dead man's switch registration flow
+- [ ] Implement all spoof modules (mac, hostname, timezone, hardware, dns, kill_switch)
+- [ ] scorched_earth.sh full sequence (NIST / DoD)
+- [ ] usb_watchdog.py dead man's switch
+- [ ] Ghost GTK GUI + tray icon
+- [ ] ghost.service and testing in VM
 
 ## Phase 7 — Mullvad Integration
-- [ ] Mullvad repo and pre-config
-- [ ] Tor + Mullvad chaining for Level 2
-- [ ] Test kill switch — zero leaks on disconnect
+- [ ] Mullvad repo, pre-config, Tor chaining for Level 2
+- [ ] Test kill switch (no leaks on disconnect)
 
 ## Phase 8 — KDE Theming
-- [ ] Dark theme, macOS-style dock, GoodyOS wallpaper/icons
-- [ ] Konsole dark profile, theme hook at build time
+- [ ] Dark theme, macOS-style dock, wallpaper, Konsole profile
+- [ ] Theme hook runs at build time
 
 ## Phase 9 — Installer
-- [ ] Calamares with GoodyOS branding
-- [ ] preseed/goody.cfg for default install
+- [ ] Calamares branding, preseed/goody.cfg
 - [ ] Test full install in VirtualBox
 
 ## Phase 10 — QA & Polish
-- [ ] Every tool tested, RAM under 800MB idle
-- [ ] DoD/NIST wipe, firewall, DNS, kill switch, Ghost tiers
-- [ ] ISO under 4GB
+- [ ] Tool QA, RAM <800MB idle, wipe tests, firewall/DNS/VPN/Ghost tests
+- [ ] ISO size target
 
 ## Phase 11 — Documentation
-- [ ] README, user guide, Ghost manual, install instructions
-- [ ] AI training protection guarantee documented
+- [ ] README (done), user guide, Ghost manual, install instructions, AI protection doc
 
 ## Phase 12 — Release
-- [ ] GoodyOS 1.0 Beta
-- [ ] Reproducible clean build, upload ISO, repo public
+- [ ] GoodyOS 1.0 Beta, clean build, GitHub Releases, go public

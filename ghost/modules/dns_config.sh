@@ -1,16 +1,7 @@
 #!/usr/bin/env bash
-# Ghost — DNS-over-HTTPS (Quad9 or similar); ISP cannot see queries (Level 1)
+# GoodyOS Ghost — DNS-over-HTTPS (e.g. Quad9), system-wide
+# ISP cannot see DNS queries
 
 set -e
-# Configure systemd-resolved or stub resolver for DoH
-# Placeholder: actual config depends on resolvconf vs systemd-resolved
-if [ -d /etc/systemd/resolved.conf.d ]; then
-  mkdir -p /etc/systemd/resolved.conf.d
-  cat > /etc/systemd/resolved.conf.d/goodyos.conf << 'EOF'
-[Resolve]
-DNS=9.9.9.9#https://dns.quad9.net/dns-query
-DNSOverTLS=yes
-EOF
-  systemctl restart systemd-resolved 2>/dev/null || true
-fi
-echo "[Ghost] DNS-over-HTTPS configured"
+# TODO Phase 5/6: configure resolved or stubby for DoH
+echo "[Ghost] dns_config: placeholder"

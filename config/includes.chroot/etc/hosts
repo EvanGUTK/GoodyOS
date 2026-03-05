@@ -1,7 +1,8 @@
-# GoodyOS — base hosts (telemetry block list appended by hook or separate file)
-127.0.0.1   localhost
-127.0.1.1   goodyos
-
-# Telemetry / AI training / data collection blocks (expand per release)
-# OpenAI, Google, Meta, Microsoft, Amazon, Apple — add known endpoints
-# See docs for full list; updated with each release.
+# GoodyOS — telemetry / AI training endpoint blocks
+# Updated with each release. Base set from Project Bible.
+127.0.0.1 localhost
+# AI / data collection (add more as discovered)
+127.0.0.1 api.openai.com
+127.0.0.1 api.openai.com
+127.0.0.1 telemetry.microsoft.com
+127.0.0.1 www.google-analytics.com

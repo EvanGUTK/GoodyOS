@@ -1,31 +1,24 @@
 #!/usr/bin/env bash
-# GoodyOS live-build — generate config tree
+# GoodyOS live-build master config
 # Debian Bookworm, amd64, KDE Plasma
-# Run once (or after lb clean): ./auto/config
+# See: https://live-team.pages.debian.net/live-build/html/live-build.en.html
 
-set -e
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
-cd "$REPO_ROOT"
-
-# Ensure our config dir exists and is used
-mkdir -p config
-
-# lb config: creates/updates config/ for live-build
-# Mirror and suite
 lb config noauto \
-  --mirror-binary "http://deb.debian.org/debian/" \
-  --mirror-chroot "http://deb.debian.org/debian/" \
-  --mirror-chroot-security "http://security.debian.org/" \
-  --archive-areas "main contrib non-free non-free-firmware" \
-  --distribution bookworm \
-  --architecture amd64 \
-  --bootloader grub \
-  --binary-images iso \
-  --iso-application "GoodyOS" \
-  --iso-volume "GoodyOS" \
-  --iso-publisher "GoodyOS — Your machine. Your data. Nobody else's business." \
-  --desktop plasma \
-  --source false
+	--distribution bookworm \
+	--archive-areas "main contrib non-free non-free-firmware" \
+	--debootstrap-options "--variant=minbase" \
+	--architecture amd64 \
+	--linux-flavours amd64 \
+	--bootloader grub-pc \
+	--mirror-bootstrap "http://deb.debian.org/debian/" \
+	--mirror-chroot "http://deb.debian.org/debian/" \
+	--mirror-chroot-security "http://security.debian.org/debian-security" \
+	--apt-recommends false \
+	--firmware-chroot true \
+	--firmware-binary true \
+	--memtest none \
+	--win32-loader false
 
-echo "[GoodyOS] Config generated in config/"
+# GoodyOS specifics
+export GOODYOS_VERSION=1.0
+export GOODYOS_CODENAME=ghost

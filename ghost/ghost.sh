@@ -1,33 +1,31 @@
 #!/usr/bin/env bash
 # GoodyOS Ghost — master identity/spoof controller
-# Called at boot, on network connect, and on user "New Identity"
-# Level 1: MAC, hostname, DNS, VPN kill switch, timezone
-# Level 2: + Tor+Mullvad chain, hardware spoof, /proc /sys hardening
-# Level 3: + dead man's switch armed, Scorched Earth ready
+# Called at boot, on network connect, and on user "New Identity".
+# Orchestrates: mac_spoof, hostname_spoof, timezone_spoof, hardware_spoof, dns_config, kill_switch
 
 set -e
-GHOST_ROOT="${GHOST_ROOT:-/opt/ghost}"
-LEVEL="${1:-1}"
-
-export GHOST_LEVEL="$LEVEL"
-MODULES="$GHOST_ROOT/modules"
+GHOST_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+GHOST_LEVEL="${GHOST_LEVEL:-1}"
 
 run_module() {
-  local m="$1"
-  [ -x "$MODULES/$m" ] && "$MODULES/$m" "$LEVEL" || true
+	local m="$1"
+	[[ -x "$GHOST_ROOT/modules/$m" ]] && "$GHOST_ROOT/modules/$m" || true
 }
 
-# Level 1 — always
-run_module mac_spoof.sh
-run_module hostname_spoof.sh
-run_module timezone_spoof.sh
-run_module dns_config.sh
-run_module kill_switch.sh
-
-# Level 2+
-if [ "$LEVEL" -ge 2 ]; then
-  run_module hardware_spoof.sh
-fi
-
-# Level 3: dead man's switch and Scorched Earth are handled by usb_watchdog and GUI
-echo "[Ghost] Identity applied (level $LEVEL)"
+case "${1:-all}" in
+	all)
+		run_module mac_spoof.sh
+		run_module hostname_spoof.sh
+		run_module timezone_spoof.sh
+		[[ "$GHOST_LEVEL" -ge 2 ]] && run_module hardware_spoof.sh || true
+		run_module dns_config.sh
+		run_module kill_switch.sh
+		;;
+	mac)    run_module mac_spoof.sh ;;
+	host)   run_module hostname_spoof.sh ;;
+	tz)     run_module timezone_spoof.sh ;;
+	hw)     run_module hardware_spoof.sh ;;
+	dns)    run_module dns_config.sh ;;
+	kill)   run_module kill_switch.sh ;;
+	*)      echo "Usage: $0 all|mac|host|tz|hw|dns|kill" ; exit 1 ;;
+esac

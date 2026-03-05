@@ -1,9 +1,7 @@
 #!/usr/bin/env bash
-# Ghost — hardware ID spoof (Level 2): CPU, GPU, drive serials, monitor EDID
-# /proc and /sys hardening so apps cannot read real hardware
+# GoodyOS Ghost — hardware ID spoof (Level 2+): CPU, GPU, drive serials, monitor EDID
+# /proc and /sys hardening so apps cannot read real IDs
 
 set -e
-LEVEL="${1:-2}"
-# Placeholder: actual spoofing involves kernel modules or overlay filesystems
-# and hiding real /sys entries. Implement per GoodyOS spec.
-echo "[Ghost] Hardware spoof (Level $LEVEL) placeholder"
+# TODO Phase 6: Level 2+ only
+echo "[Ghost] hardware_spoof: placeholder (Level 2+)"

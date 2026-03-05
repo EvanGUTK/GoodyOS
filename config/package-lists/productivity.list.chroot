@@ -6,7 +6,4 @@ thunderbird
 gimp
 inkscape
 kdenlive
-
-# Notes and passwords (self-hostable options)
-# bitwarden — install via flatpak or .deb if desired
-# joplin — optional
+firefox-esr
