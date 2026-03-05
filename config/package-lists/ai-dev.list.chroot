@@ -1,4 +1,4 @@
-# GoodyOS — AI/ML: Ollama, Jupyter, CUDA (optional)
+# GoodyOS — AI/ML: Ollama, Jupyter (Zero Bloat: only what is listed)
 # Uncomment cuda packages if building for GPU AI work
 
 ollama

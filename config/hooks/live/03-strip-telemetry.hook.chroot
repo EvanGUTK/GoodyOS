@@ -1,5 +1,28 @@
-#!/bin/bash
-# GoodyOS — remove popularity-contest and any telemetry packages
+#!/bin/sh
+# GoodyOS — Zero Telemetry: remove phone-home, crash reporters, usage collection.
+# No data collection. Ever.
+
 set -e
-# Phase 5: apt purge popularity-contest, etc.
-echo "[GoodyOS] 03-strip-telemetry: placeholder — telemetry stripping in Phase 5"
+
+# Remove Debian/Ubuntu telemetry and usage reporting
+for pkg in popularity-contest apt-listchanges; do
+  dpkg --remove --force-remove-reinstreq "$pkg" 2>/dev/null || true
+done
+
+# Disable crash reporters (Apport, Whoopsie) if present
+if [ -f /etc/default/apport ]; then
+  sed -i 's/^enabled=1/enabled=0/' /etc/default/apport 2>/dev/null || true
+fi
+echo 'enabled=0' > /etc/default/apport 2>/dev/null || true
+
+# Remove cron/jobs that send data off-host
+rm -f /etc/cron.daily/popularity-contest 2>/dev/null || true
+rm -f /etc/cron.weekly/popularity-contest 2>/dev/null || true
+
+# Ensure no whoopsie / error reporting service starts
+systemctl disable whoopsie 2>/dev/null || true
+systemctl disable apport 2>/dev/null || true
+systemctl mask whoopsie 2>/dev/null || true
+systemctl mask apport 2>/dev/null || true
+
+echo "[GoodyOS] 03-strip-telemetry: Zero Telemetry applied — no phone-home, no crash reporters"

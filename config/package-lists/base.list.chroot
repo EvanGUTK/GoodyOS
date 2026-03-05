@@ -1,8 +1,8 @@
 # GoodyOS — minimal Debian core (base list)
-# Keep minimal; other lists add desktop, security, dev, etc.
+# Zero Bloat: only packages listed here. Nothing hidden, nothing extra.
+# Other lists add desktop, security, dev, etc. Keep this list minimal.
 
 acpi
-apt-listchanges
 bash-completion
 ca-certificates
 curl

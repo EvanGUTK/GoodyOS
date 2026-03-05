@@ -21,6 +21,8 @@ GoodyOS is a Linux distribution built for security professionals, AI developers,
 | **Privacy By Default** | Every privacy protection is on by default. No configuration required. |
 | **Proven Trust** | Every tool has a track record. No marketing claims — only proven results. |
 
+Implementation details and verification checklists: **docs/CORE_PRINCIPLES.md**.
+
 ---
 
 ## Technology Stack

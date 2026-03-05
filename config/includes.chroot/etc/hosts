@@ -1,8 +1,67 @@
-# GoodyOS — telemetry / AI training endpoint blocks
-# Updated with each release. Base set from Project Bible.
-127.0.0.1 localhost
-# AI / data collection (add more as discovered)
-127.0.0.1 api.openai.com
-127.0.0.1 api.openai.com
-127.0.0.1 telemetry.microsoft.com
-127.0.0.1 www.google-analytics.com
+# GoodyOS — Zero Telemetry + AI Training Protection
+# Block telemetry and AI/data-collection endpoints. Updated with each release.
+# See docs/CORE_PRINCIPLES.md.
+
+127.0.0.1   localhost
+127.0.1.1   goodyos
+
+# ---- Telemetry / analytics / crash reporting (Zero Telemetry) ----
+127.0.0.1   telemetry.microsoft.com
+127.0.0.1   vortex.data.microsoft.com
+127.0.0.1   watson.telemetry.microsoft.com
+127.0.0.1   v10.events.data.microsoft.com
+127.0.0.1   settings-win.data.microsoft.com
+127.0.0.1   www.google-analytics.com
+127.0.0.1   google-analytics.com
+127.0.0.1   ssl.google-analytics.com
+127.0.0.1   stats.g.doubleclick.net
+127.0.0.1   connectivity.check.gutenberg.org
+127.0.0.1   popcon.ubuntu.com
+127.0.0.1   metrics.ubuntu.com
+127.0.0.1   fsm-cache.ubuntu.com
+127.0.0.1   whoopsie.ubuntu.com
+127.0.0.1   errors.ubuntu.com
+127.0.0.1   telemetry.canonical.com
+127.0.0.1   productinfo.ubuntu.com
+127.0.0.1   ads.ubuntu.com
+127.0.0.1   facebook.com
+127.0.0.1   www.facebook.com
+127.0.0.1   connect.facebook.net
+127.0.0.1   analytics.facebook.com
+127.0.0.1   metrics.apple.com
+127.0.0.1   gdmf.apple.com
+127.0.0.1   ocsp.apple.com
+127.0.0.1   api.amazon.com
+127.0.0.1   device-metrics-us.amazon.com
+
+# ---- AI / data collection / training (AI Training Protection) ----
+127.0.0.1   api.openai.com
+127.0.0.1   openai.com
+127.0.0.1   chat.openai.com
+127.0.0.1   platform.openai.com
+127.0.0.1   oauth.openai.com
+127.0.0.1   ai.google
+127.0.0.1   generativelanguage.googleapis.com
+127.0.0.1   bard.google.com
+127.0.0.1   gemini.google.com
+127.0.0.1   api.gemini.google.com
+127.0.0.1   cloud.google.com
+127.0.0.1   azure.microsoft.com
+127.0.0.1   inference.models.azure.com
+127.0.0.1   api.anthropic.com
+127.0.0.1   claude.ai
+127.0.0.1   aws.amazon.com
+127.0.0.1   bedrock.amazonaws.com
+127.0.0.1   api.aws.amazon.com
+127.0.0.1   meta.ai
+127.0.0.1   www.meta.ai
+127.0.0.1   llms.llm-api.com
+127.0.0.1   api.cohere.ai
+127.0.0.1   api.mistral.ai
+127.0.0.1   copilot.github.com
+127.0.0.1   api.githubcopilot.com
+127.0.0.1   copilot.microsoft.com
+127.0.0.1   api.copilot.microsoft.com
+127.0.0.1   cursor.com
+127.0.0.1   api.cursor.com
+127.0.0.1   telemetry.cursor.com

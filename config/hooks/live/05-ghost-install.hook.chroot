@@ -1,5 +1,21 @@
-#!/bin/bash
-# GoodyOS — install Ghost app, systemd unit, modules into /opt/ghost
+#!/bin/sh
+# GoodyOS — install Ghost app and enable at boot (Privacy By Default)
 set -e
-# Phase 6: Copy ghost/ from includes.chroot/opt/ghost, enable ghost.service
-echo "[GoodyOS] 05-ghost-install: placeholder — Phase 6"
+
+GHOST_SRC="/opt/ghost"
+[ ! -d "$GHOST_SRC" ] && echo "[GoodyOS] 05-ghost-install: /opt/ghost not found, skip" && exit 0
+
+chmod +x "$GHOST_SRC/ghost.sh" 2>/dev/null || true
+chmod +x "$GHOST_SRC/modules/"*.sh 2>/dev/null || true
+chmod +x "$GHOST_SRC/ghost.py" "$GHOST_SRC/usb_watchdog.py" 2>/dev/null || true
+
+if [ -f "$GHOST_SRC/ghost.service" ]; then
+  ln -sf /opt/ghost/ghost.service /etc/systemd/system/ghost.service
+  mkdir -p /etc/systemd/system/multi-user.target.wants
+  ln -sf ../ghost.service /etc/systemd/system/multi-user.target.wants/ghost.service
+fi
+if [ -f "$GHOST_SRC/usb_watchdog.service" ]; then
+  ln -sf /opt/ghost/usb_watchdog.service /etc/systemd/system/usb_watchdog.service
+fi
+
+echo "[GoodyOS] 05-ghost-install: Ghost installed and enabled at boot (Privacy By Default)"

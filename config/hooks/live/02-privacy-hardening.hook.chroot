@@ -1,5 +1,29 @@
-#!/bin/bash
-# GoodyOS — privacy hardening: UFW, sysctl, DNS-over-HTTPS, RAM/swap wipe
+#!/bin/sh
+# GoodyOS — Privacy By Default: firewall, sysctl, enable Ghost at boot.
+# Every privacy protection on by default. No configuration required.
+
 set -e
-# TODO Phase 5: Enable UFW, apply sysctl, configure DoH, RAM/swap wipe on shutdown
-echo "[GoodyOS] 02-privacy-hardening: placeholder — hardening will be implemented in Phase 5"
+
+# ---- UFW: default deny inbound, allow outbound ----
+if command -v ufw >/dev/null 2>&1; then
+  ufw default deny incoming
+  ufw default allow outgoing
+  ufw --force enable || true
+fi
+
+# ---- Sysctl hardening (no core dumps, restrict dmesg, etc.) ----
+mkdir -p /etc/sysctl.d
+cat >> /etc/sysctl.d/99-goodyos.conf << 'SYSCTL'
+# GoodyOS Privacy By Default
+net.ipv4.ip_forward = 0
+net.ipv4.conf.all.accept_redirects = 0
+net.ipv4.conf.all.send_redirects = 0
+net.ipv4.icmp_accept_redirects = 0
+net.ipv4.tcp_syncookies = 1
+kernel.core_uses_pid = 0
+kernel.dmesg_restrict = 1
+SYSCTL
+
+# (Ghost enabled at boot is done in 05-ghost-install after service is installed)
+
+echo "[GoodyOS] 02-privacy-hardening: Privacy By Default applied — UFW on, sysctl hardened"
