@@ -10,10 +10,12 @@ goodyos/  (repo root)
 ├── PIPELINE.md
 ├── build.sh                 # One-click: runs auto/build
 ├── auto/
-│   ├── config              # live-build config (Bookworm, amd64, KDE)
-│   ├── build               # lb config && sudo lb build
-│   └── clean               # sudo lb clean --purge
+│   ├── config              # lb config (Bookworm, amd64, no recommends, mirrors)
+│   ├── build               # config + sync Ghost + sudo lb build
+│   ├── clean               # sudo lb clean --purge
+│   └── setup-archives      # one-time: fetch Mullvad key for config/archives
 ├── config/
+│   ├── archives/           # extra APT repos (Mullvad); key via setup-archives
 │   ├── package-lists/      # .list.chroot — what gets installed
 │   │   ├── base.list.chroot
 │   │   ├── desktop.list.chroot
@@ -32,7 +34,7 @@ goodyos/  (repo root)
 │   ├── includes.chroot/    # Files copied into the OS image
 │   │   ├── etc/            # hosts, nftables.conf, skel
 │   │   ├── usr/share/      # wallpapers, themes
-│   │   └── opt/ghost/      # Filled by 05-ghost-install from ghost/
+│   │   └── opt/ghost/      # Filled by auto/build from ghost/ before lb build
 │   ├── includes.binary/    # Boot-time (GRUB, etc.)
 │   │   └── bootloaders/grub-pc/config.cfg
 │   └── preseed/
@@ -51,6 +53,7 @@ goodyos/  (repo root)
 │       ├── kill_switch.sh
 │       └── scorched_earth.sh
 ├── docs/
+│   ├── TECHNOLOGY_STACK.md # Stack table + how it’s applied in the build
 │   ├── roadmap.md
 │   ├── package-rationale.md
 │   ├── theming-spec.md
@@ -63,15 +66,17 @@ goodyos/  (repo root)
 ## Build Pipeline (ISO)
 
 1. **Host:** Parrot OS or Debian-based (not Windows/macOS). Install: `live-build debootstrap squashfs-tools xorriso`.
-2. **Configure:** `lb config` (or run `./auto/config` which invokes it with GoodyOS options).
-3. **Build:** `sudo lb build` (or `./build.sh`).
+2. **Optional (Mullvad):** Run once: `./auto/setup-archives` to fetch the Mullvad APT key (needed for `mullvad-vpn`).
+3. **Build:** `sudo ./build.sh` (or `sudo ./auto/build`). This runs `./auto/config` (lb config), syncs Ghost into `config/includes.chroot/opt/ghost`, then `sudo lb build`.
    - **Bootstrap:** debootstrap fetches minimal Debian.
    - **Chroot:** Packages from `config/package-lists/*.list.chroot` are installed.
    - **Hooks:** Scripts in `config/hooks/live/*.hook.chroot` run in order (theming, hardening, telemetry strip, Mullvad, Ghost install).
    - **Includes:** `includes.chroot/` and `includes.binary/` are merged into the image.
    - **Squash + ISO:** Filesystem is squashed and wrapped into the ISO.
-4. **Output:** `live-image-amd64.hybrid.iso` (or similar) — boot in VirtualBox or burn for bare metal.
-5. **Clean between builds:** `sudo ./auto/clean` then `sudo lb build`.
+4. **Output:** `live-image-amd64.hybrid.iso` — boot in VirtualBox or burn for bare metal.
+5. **Clean between builds:** `sudo ./auto/clean` then `sudo ./build.sh`.
+
+Technology Stack (Base OS, kernel, desktop, VPN, firewall, DNS, wipe, Ghost): **docs/TECHNOLOGY_STACK.md**.
 
 ## Daily Loop
 

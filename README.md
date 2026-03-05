@@ -224,17 +224,22 @@ GoodyOS is not “unbreakable by a nation-state with unlimited resources and phy
 ## Build Quick Reference
 
 ```bash
-# Dependencies
+# Dependencies (Debian/Parrot host)
 sudo apt install live-build debootstrap squashfs-tools xorriso
 
-# Full build
-sudo lb build
+# Optional: Mullvad repo key (needed for mullvad-vpn package)
+./auto/setup-archives
+
+# Full build (runs lb config, syncs Ghost, then lb build)
+sudo ./build.sh
 
 # Clean between builds
-sudo lb clean
+sudo ./auto/clean
 ```
 
-Test in VirtualBox: Linux 64-bit, Debian-based, ≥4 GB RAM (8 GB for AI dev), mount `goodyos.iso`, boot live, then test tools, Ghost tiers, kill switch, and wipe. Keep ≥50 GB free on the build machine.
+**Technology Stack:** See **docs/TECHNOLOGY_STACK.md** (Base OS, kernel, desktop, VPN, firewall, DNS, wipe, Ghost).
+
+Test in VirtualBox: Linux 64-bit, Debian-based, ≥4 GB RAM (8 GB for AI dev), mount the built ISO, boot live, then test tools, Ghost tiers, kill switch, and wipe. Keep ≥50 GB free on the build machine.
 
 ---
 

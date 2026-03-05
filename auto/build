@@ -1,15 +1,29 @@
 #!/usr/bin/env bash
-# GoodyOS — trigger full live-build
-# Run on Parrot OS or Debian-based host: sudo ./auto/build
+# GoodyOS — full live-build: config, sync Ghost, build ISO
+# Run on Parrot/Debian host: sudo ./auto/build  (or ./build.sh)
 
 set -e
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
 cd "$REPO_ROOT"
 
-echo "[GoodyOS] Configuring..."
-lb config
+# 1) Ensure Mullvad key exists (optional; skip if not building with Mullvad)
+if [ ! -f config/archives/mullvad.key.chroot ]; then
+  echo "[GoodyOS] Optional: run ./auto/setup-archives to add Mullvad repo key (for mullvad-vpn package)."
+fi
 
+# 2) Apply live-build config (Bookworm, amd64, no recommends, etc.)
+echo "[GoodyOS] Configuring live-build..."
+"$SCRIPT_DIR/config"
+
+# 3) Sync Ghost into image (includes.chroot/opt/ghost)
+echo "[GoodyOS] Syncing Ghost into config/includes.chroot/opt/ghost..."
+mkdir -p config/includes.chroot/opt/ghost
+rsync -a --exclude='.git' ghost/ config/includes.chroot/opt/ghost/ 2>/dev/null || cp -r ghost/* config/includes.chroot/opt/ghost/
+chmod +x config/includes.chroot/opt/ghost/ghost.sh 2>/dev/null || true
+chmod +x config/includes.chroot/opt/ghost/modules/*.sh 2>/dev/null || true
+
+# 4) Build
 echo "[GoodyOS] Building ISO..."
 sudo lb build
 

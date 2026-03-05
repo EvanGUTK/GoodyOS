@@ -1,6 +1,7 @@
 # GoodyOS — minimal Debian core (base list)
 # Zero Bloat: only packages listed here. Nothing hidden, nothing extra.
 # Other lists add desktop, security, dev, etc. Keep this list minimal.
+# Kernel: linux-image-amd64 from live-build; hardening via hardening-runtime + sysctl (02 hook).
 
 acpi
 bash-completion
@@ -8,6 +9,7 @@ ca-certificates
 curl
 dbus
 firmware-linux-nonfree
+hardening-runtime
 initramfs-tools
 iproute2
 iputils-ping
