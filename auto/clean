@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+# GoodyOS — clean all build artifacts
+# Run before a fresh build: sudo ./auto/clean
+
+set -e
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
+cd "$REPO_ROOT"
+
+echo "[GoodyOS] Cleaning build artifacts..."
+sudo lb clean --purge
+
+echo "[GoodyOS] Clean complete."

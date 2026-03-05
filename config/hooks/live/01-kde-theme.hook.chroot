@@ -1,0 +1,6 @@
+#!/bin/bash
+# GoodyOS — apply KDE theme, dock, wallpaper at build time
+set -e
+# TODO Phase 8: Apply dark theme, macOS-style dock, GoodyOS wallpaper
+# Target: /etc/skel and system defaults
+echo "[GoodyOS] 01-kde-theme: placeholder — theme application will be implemented in Phase 8"

@@ -1,0 +1,10 @@
+# GoodyOS — AI/ML: Ollama, Jupyter, CUDA (optional)
+# Uncomment cuda packages if building for GPU AI work
+
+ollama
+jupyter-notebook
+python3-jupyter-core
+python3-ipykernel
+python3-numpy
+python3-pandas
+# nvidia-cuda-toolkit  # uncomment for CUDA

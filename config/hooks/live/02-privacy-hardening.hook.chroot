@@ -1,0 +1,5 @@
+#!/bin/bash
+# GoodyOS — privacy hardening: UFW, sysctl, DNS-over-HTTPS, RAM/swap wipe
+set -e
+# TODO Phase 5: Enable UFW, apply sysctl, configure DoH, RAM/swap wipe on shutdown
+echo "[GoodyOS] 02-privacy-hardening: placeholder — hardening will be implemented in Phase 5"

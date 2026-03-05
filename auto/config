@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+# GoodyOS live-build master config
+# Debian Bookworm, amd64, KDE Plasma
+# See: https://live-team.pages.debian.net/live-build/html/live-build.en.html
+
+lb config noauto \
+	--distribution bookworm \
+	--archive-areas "main contrib non-free non-free-firmware" \
+	--debootstrap-options "--variant=minbase" \
+	--architecture amd64 \
+	--linux-flavours amd64 \
+	--bootloader grub-pc \
+	--mirror-bootstrap "http://deb.debian.org/debian/" \
+	--mirror-chroot "http://deb.debian.org/debian/" \
+	--mirror-chroot-security "http://security.debian.org/debian-security" \
+	--apt-recommends false \
+	--firmware-chroot true \
+	--firmware-binary true \
+	--memtest none \
+	--win32-loader false
+
+# GoodyOS specifics
+export GOODYOS_VERSION=1.0
+export GOODYOS_CODENAME=ghost

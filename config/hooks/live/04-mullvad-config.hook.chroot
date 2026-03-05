@@ -1,0 +1,5 @@
+#!/bin/bash
+# GoodyOS — pre-configure Mullvad client (no account; user adds token)
+set -e
+# TODO Phase 7: Mullvad repo, default settings, kill switch integration
+echo "[GoodyOS] 04-mullvad-config: placeholder — Phase 7"

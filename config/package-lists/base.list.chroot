@@ -1,0 +1,26 @@
+# GoodyOS — minimal Debian core (base list)
+# Keep minimal; other lists add desktop, security, dev, etc.
+
+acpi
+apt-listchanges
+bash-completion
+ca-certificates
+curl
+dbus
+firmware-linux-nonfree
+initramfs-tools
+iproute2
+iputils-ping
+kmod
+less
+locales
+logrotate
+nftables
+openssh-client
+rsync
+sudo
+systemd
+udev
+vim-tiny
+wget
+whiptail

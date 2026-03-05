@@ -1,0 +1,13 @@
+[Unit]
+Description=GoodyOS Ghost — identity and privacy service
+After=network-pre.target
+Before=network-online.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/opt/ghost/ghost.sh all
+# On network connect: ExecStartPost or separate path unit to run ghost.sh all
+
+[Install]
+WantedBy=multi-user.target

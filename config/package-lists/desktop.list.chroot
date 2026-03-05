@@ -1,0 +1,15 @@
+# GoodyOS — KDE Plasma + Latte Dock
+# Dark theme, minimal look, macOS-style dock
+
+plasma-desktop
+plasma-workspace
+kwin-x11
+sddm
+kde-config-screenlocker
+latte-dock
+konsole
+dolphin
+kate
+systemsettings
+qt5-style-kvantum
+qt5-style-kvantum-themes

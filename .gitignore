@@ -1,0 +1,22 @@
+# GoodyOS build artifacts (live-build)
+live-image-*
+chroot/
+binary/
+cache/
+.goodyos-build/
+
+# ISO output (optional: track or ignore)
+# goodyos.iso
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+venv/
+
+# Editor / OS
+.DS_Store
+Thumbs.db
+*.swp
+*~

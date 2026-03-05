@@ -1,0 +1,5 @@
+#!/bin/bash
+# GoodyOS — install Ghost app, systemd unit, modules into /opt/ghost
+set -e
+# Phase 6: Copy ghost/ from includes.chroot/opt/ghost, enable ghost.service
+echo "[GoodyOS] 05-ghost-install: placeholder — Phase 6"

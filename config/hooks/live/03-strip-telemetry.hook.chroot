@@ -1,0 +1,5 @@
+#!/bin/bash
+# GoodyOS — remove popularity-contest and any telemetry packages
+set -e
+# Phase 5: apt purge popularity-contest, etc.
+echo "[GoodyOS] 03-strip-telemetry: placeholder — telemetry stripping in Phase 5"
