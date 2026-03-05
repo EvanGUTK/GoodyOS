@@ -1,0 +1,16 @@
+# GoodyOS — security & penetration testing tools
+
+nmap
+wireshark
+metasploit-framework
+aircrack-ng
+burpsuite
+john
+
+# Firewall and hardening (used by Ghost)
+ufw
+nftables
+iptables
+
+# MAC randomization (Ghost Level 1)
+macchanger

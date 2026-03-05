@@ -1,0 +1,20 @@
+#!/bin/sh
+# GoodyOS — install Ghost app and systemd service into image
+# Runs inside chroot during build
+
+set -e
+
+GHOST_SRC="/opt/ghost"
+[ ! -d "$GHOST_SRC" ] && echo "[GoodyOS] 05-ghost-install: $GHOST_SRC not found, skip" && exit 0
+
+# Make scripts executable
+chmod +x "$GHOST_SRC"/ghost.sh "$GHOST_SRC"/modules/*.sh 2>/dev/null || true
+chmod +x "$GHOST_SRC"/usb_watchdog.py 2>/dev/null || true
+
+# Install systemd service
+if [ -f "$GHOST_SRC/ghost.service" ]; then
+  ln -sf /opt/ghost/ghost.service /etc/systemd/system/ghost.service
+  ln -sf /opt/ghost/usb_watchdog.service /etc/systemd/system/usb_watchdog.service 2>/dev/null || true
+fi
+
+echo "[GoodyOS] 05-ghost-install: Ghost installed"

@@ -1,0 +1,15 @@
+#!/bin/sh
+# GoodyOS — apply KDE dark theme, macOS-style dock, GoodyOS wallpaper
+# Runs inside chroot during build
+
+set -e
+
+# Apply GoodyOS defaults for live user
+if [ -d /etc/skel ]; then
+  # Copy branding into skel so new users get it
+  [ -d /usr/share/wallpapers/goodyos ] && cp -r /usr/share/wallpapers/goodyos /etc/skel/.local/share/wallpapers/ 2>/dev/null || true
+fi
+
+# KDE defaults: dark theme, bottom panel (handled by includes or first-boot script)
+# Full theming can be done via kwriteconfig/kconfig in a normal hook or first login
+echo "[GoodyOS] 01-kde-theme: theme placeholder applied"

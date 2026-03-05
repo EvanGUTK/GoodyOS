@@ -1,0 +1,15 @@
+#!/bin/sh
+# GoodyOS — remove telemetry and phone-home packages
+# Runs inside chroot during build
+
+set -e
+
+# Remove packages that phone home or report usage
+for pkg in popularity-contest apt-listchanges; do
+  dpkg --remove --force-remove-reinstreq "$pkg" 2>/dev/null || true
+done
+
+# Purge config left behind
+rm -f /etc/cron.daily/popularity-contest 2>/dev/null || true
+
+echo "[GoodyOS] 03-strip-telemetry: telemetry packages removed"

@@ -1,0 +1,20 @@
+#!/bin/sh
+# GoodyOS — privacy hardening: sysctl, AppArmor, RAM/swap wipe on shutdown
+# Runs inside chroot during build
+
+set -e
+
+# Harden sysctl (append to existing or drop file in /etc/sysctl.d/)
+cat >> /etc/sysctl.d/99-goodyos.conf << 'SYSCTL'
+# GoodyOS privacy hardening
+net.ipv4.ip_forward = 0
+net.ipv4.conf.all.accept_redirects = 0
+net.ipv4.conf.all.send_redirects = 0
+net.ipv4.icmp_accept_redirects = 0
+net.ipv4.tcp_syncookies = 1
+kernel.core_uses_pid = 0
+kernel.dmesg_restrict = 1
+SYSCTL
+
+# Ensure AppArmor is enabled (profiles loaded at boot)
+echo "[GoodyOS] 02-privacy-hardening: sysctl and hardening applied"

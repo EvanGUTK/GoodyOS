@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+# GoodyOS live-build — generate config tree
+# Debian Bookworm, amd64, KDE Plasma
+# Run once (or after lb clean): ./auto/config
+
+set -e
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
+cd "$REPO_ROOT"
+
+# Ensure our config dir exists and is used
+mkdir -p config
+
+# lb config: creates/updates config/ for live-build
+# Mirror and suite
+lb config noauto \
+  --mirror-binary "http://deb.debian.org/debian/" \
+  --mirror-chroot "http://deb.debian.org/debian/" \
+  --mirror-chroot-security "http://security.debian.org/" \
+  --archive-areas "main contrib non-free non-free-firmware" \
+  --distribution bookworm \
+  --architecture amd64 \
+  --bootloader grub \
+  --binary-images iso \
+  --iso-application "GoodyOS" \
+  --iso-volume "GoodyOS" \
+  --iso-publisher "GoodyOS — Your machine. Your data. Nobody else's business." \
+  --desktop plasma \
+  --source false
+
+echo "[GoodyOS] Config generated in config/"

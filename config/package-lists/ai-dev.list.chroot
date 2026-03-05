@@ -1,0 +1,16 @@
+# GoodyOS — AI/ML dev: Ollama, Jupyter, CUDA
+# Local LLM only — no code leaves machine
+
+ollama
+jupyter
+jupyter-notebook
+python3-jupyter-core
+
+# Python ML stack
+python3-numpy
+python3-pandas
+python3-scipy
+python3-matplotlib
+
+# CUDA (optional; uncomment if building with GPU support)
+# nvidia-cuda-toolkit

@@ -1,0 +1,22 @@
+# GoodyOS — KDE Plasma + Latte Dock
+# Target: under 800MB idle RAM, dark theme, macOS-style dock
+
+# KDE Plasma desktop
+plasma-desktop
+plasma-workspace
+kwin-x11
+sddm
+
+# Applications
+konsole
+dolphin
+kate
+latte-dock
+
+# Qt/KDE deps
+qt5-style-kvantum
+qt5-style-kvantum-themes
+
+# Session and display
+xorg
+xserver-xorg

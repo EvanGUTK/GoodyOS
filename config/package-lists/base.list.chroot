@@ -1,0 +1,24 @@
+# GoodyOS — minimal Debian core (base)
+# Keep minimal; desktop and other stacks in separate lists
+
+# Essential system
+apt
+ca-certificates
+sudo
+systemd
+dbus
+udev
+kmod
+
+# Network base
+iproute2
+iputils-ping
+net-tools
+curl
+wget
+
+# Security base
+gnupg
+openssh-client
+
+# No popularity-contest or other telemetry (stripped in hook)

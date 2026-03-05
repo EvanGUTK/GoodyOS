@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# GoodyOS — trigger full live-build
+# Run on Debian/Parrot host: sudo ./auto/build
+
+set -e
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
+cd "$REPO_ROOT"
+
+echo "[GoodyOS] Starting live-build..."
+sudo lb build
+
+echo "[GoodyOS] Build complete. Output: live-image-amd64.hybrid.iso"
+echo "          Rename/copy to goodyos.iso for testing."

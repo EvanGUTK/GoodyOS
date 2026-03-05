@@ -1,0 +1,11 @@
+#!/bin/sh
+# GoodyOS — pre-configure Mullvad VPN (no account; user adds token)
+# Runs inside chroot during build
+
+set -e
+
+# Mullvad systemd service and default config dir
+# User connects with account number after first boot
+mkdir -p /etc/mullvad 2>/dev/null || true
+
+echo "[GoodyOS] 04-mullvad-config: Mullvad placeholder configured"
