@@ -1,0 +1,13 @@
+[Unit]
+Description=GoodyOS USB Dead Man's Switch
+After=ghost.service
+
+[Service]
+Type=simple
+Environment=GHOST_ROOT=/opt/ghost
+ExecStart=/usr/bin/python3 /opt/ghost/usb_watchdog.py
+Restart=always
+RestartSec=3
+
+[Install]
+WantedBy=multi-user.target
