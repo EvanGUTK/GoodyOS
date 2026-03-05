@@ -1,0 +1,15 @@
+[Unit]
+Description=GoodyOS Ghost — identity and privacy layer
+After=network-pre.target
+Before=network.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+Environment=GHOST_ROOT=/opt/ghost
+ExecStart=/opt/ghost/ghost.sh 1
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
