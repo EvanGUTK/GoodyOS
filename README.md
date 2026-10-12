@@ -1,3 +1,11 @@
+<div align="center">
+
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0b3d2e,100:0d1117&height=220&section=header&text=GoodyOS&fontSize=60&fontColor=ffffff&fontAlignY=38&desc=Your%20machine.%20Your%20data.%20Nobody%20else%27s%20business.&descAlignY=60&descSize=20&animation=fadeIn" alt="GoodyOS" width="100%" />
+
+![Debian](https://img.shields.io/badge/Debian-Bookworm-A81D33?style=for-the-badge&logo=debian&logoColor=white) ![KDE Plasma](https://img.shields.io/badge/KDE-Plasma-1D99F3?style=for-the-badge&logo=kde&logoColor=white) ![Telemetry](https://img.shields.io/badge/Telemetry-None-2ea043?style=for-the-badge) ![Mullvad](https://img.shields.io/badge/VPN-Mullvad-294D73?style=for-the-badge) ![Shell](https://img.shields.io/badge/Shell-4EAA25?style=for-the-badge&logo=gnubash&logoColor=white)
+
+</div>
+
 # GoodyOS
 
 **A user-first privacy Linux distribution.**  
@@ -237,3 +245,12 @@ Test in VirtualBox: Linux 64-bit, Debian-based, ≥4 GB RAM (8 GB for AI dev), m
 ---
 
 **GoodyOS — Build it. Ship it. Protect people.**
+
+
+---
+
+<div align="center">
+
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0d1117,100:0b3d2e&height=90&section=footer" alt="" width="100%" />
+
+</div>
